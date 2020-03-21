@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_quiz_app/data/questionbank.dart';
+import 'components/list_card.dart';
 import 'quiz.dart';
 import 'quizbrain.dart';
-  
-  questionBank qB = questionBank();
 
+QuestionBank qB = QuestionBank();
 
-class topicList extends StatelessWidget {
+class TopicList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,55 +17,32 @@ class topicList extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          Card(
-              child: ListTile(
-                leading: Text("1",
-                    style:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
-                trailing: IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Quiz(quizBrain: QuizBrain(qB.getQuestionBank()[0])),
-                      ),
-                    );
-                  },
-                  icon: Icon(
-                    Icons.arrow_forward,
-                    color: Color(0xff75daad),
-                  ),
+          ListCard(
+            cardNumber: "1",
+            cardTitle: "General",
+            onPress: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      Quiz(quizBrain: QuizBrain(qB.getQuestionBank()[0])),
                 ),
-                title: Text("General",
-                    style:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
-              ),
-            ),
-             Card(
-              child: ListTile(
-                leading: Text("2",
-                    style:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
-                trailing: IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Quiz(quizBrain: QuizBrain(qB.getQuestionBank()[1])),
-                      ),
-                    );
-                  },
-                  icon: Icon(
-                    Icons.arrow_forward,
-                    color: Color(0xff75daad),
-                  ),
+              );
+            },
+          ),
+          ListCard(
+            cardNumber: "2",
+            cardTitle: "Books",
+            onPress: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      Quiz(quizBrain: QuizBrain(qB.getQuestionBank()[1])),
                 ),
-                title: Text("Books",
-                    style:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
-              ),
-            ),
-
+              );
+            },
+          ),
         ],
       ),
     );

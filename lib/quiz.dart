@@ -1,36 +1,42 @@
 import 'package:flutter/material.dart';
 import 'quizbrain.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:audioplayers/audio_cache.dart';
+
 
 
 class Quiz extends StatefulWidget {
-    
-   QuizBrain quizBrain;
+  final QuizBrain quizBrain;
   Quiz({Key key, @required this.quizBrain}) : super(key: key);
   @override
   _QuizState createState() => _QuizState();
 }
 
 class _QuizState extends State<Quiz> {
-  
   List<Widget> scoreKeeper = [];
+final player = AudioCache();
+  
 
   void answerControl(bool answer) {
-    if (widget.quizBrain.getCurrentIconNum() == widget.quizBrain.getQuestionBank().length) {
+    if (widget.quizBrain.getCurrentIconNum() ==
+        widget.quizBrain.getQuestionBank().length) {
       _onAlertButtonPressed(context);
     }
     setState(() {
-      if (widget.quizBrain.getCurrentIconNum() < widget.quizBrain.getQuestionBank().length) {
+      if (widget.quizBrain.getCurrentIconNum() <
+          widget.quizBrain.getQuestionBank().length) {
         if (answer == widget.quizBrain.getCurrentAnswer()) {
           scoreKeeper.add(Icon(
             Icons.check,
             color: Colors.green,
           ));
+         player.play('win.wav');
         } else {
           scoreKeeper.add(Icon(
             Icons.close,
             color: Colors.red,
           ));
+           player.play('fail.mp3');
         }
       }
       widget.quizBrain.nextQuestion();

@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: <String, WidgetBuilder>{
-        '/topicList': (BuildContext context) => new topicList(),
+        '/topicList': (BuildContext context) => new TopicList(),
       },
       debugShowCheckedModeBanner: false,
       title: 'My Quiz App',

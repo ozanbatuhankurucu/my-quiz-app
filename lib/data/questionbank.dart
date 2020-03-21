@@ -1,6 +1,6 @@
 import '../question.dart';
 
-class questionBank {
+class QuestionBank {
   List<List<Question>> _questionBank = [
     [
       Question("Gumbo is a stew that originated in Louisiana.", true),
